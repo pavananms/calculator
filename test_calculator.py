@@ -1,4 +1,6 @@
 from calculator import Calculator 
+from exceptions import NegativeAdder
+import pytest
 
 def test_zero_sum():
     assert Calculator.add("") == 0
@@ -18,3 +20,7 @@ def test_new_line():
 def test_custom_delemiter():
     assert Calculator.add("//;\n4;3;5;6;8") == 26
 
+def test_report_negatives():
+    with pytest.raises(NegativeAdder):
+        assert Calculator.add("//;\n4;3;5;-6;-8")
+    
